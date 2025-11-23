@@ -1678,7 +1678,7 @@
         // Global Variables
         let cart = JSON.parse(localStorage.getItem('rorishop_cart')) || [];
         let uploadedFiles = [];
-
+        let isTyping = false;
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
