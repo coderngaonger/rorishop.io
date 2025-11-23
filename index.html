@@ -22,6 +22,7 @@
             --success: #00b894;
             --warning: #fdcb6e;
             --danger: #e74c3c;
+            --gradient: linear-gradient(135deg, #ff6b9d, #ff8a5b)
         }
 
         * {
@@ -75,20 +76,6 @@
             50% { transform: scale(1.05); }
             70% { transform: scale(0.9); }
             100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
         }
 
         /* Top Bar */
@@ -201,136 +188,228 @@
             border-radius: 50%;
             font-weight: bold;
             box-shadow: 0 2px 8px rgba(255, 138, 91, 0.4);
-            animation: bounceIn 0.5s;
-            min-width: 18px;
+            min-width: 20px;
             text-align: center;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
-            padding: 80px 30px;
+            background: linear-gradient(135deg, #ffeef4 0%, #fff8e1 50%, #e8f5e9 100%);
+            padding: 100px 30px;
             text-align: center;
-            color: white;
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: '';
+            content: '✨';
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA0MCAyMCBMIDAgMjAgTCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYxYSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+');
-            top: -50%;
-            left: -50%;
-            animation: float 20s ease-in-out infinite;
+            font-size: 100px;
+            top: 20%;
+            left: 10%;
             opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '🎁';
+            position: absolute;
+            font-size: 80px;
+            bottom: 20%;
+            right: 10%;
+            opacity: 0.1;
+            animation: float 5s ease-in-out infinite;
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            font-weight: 800;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 1.4rem;
+            color: var(--text-light);
             margin-bottom: 40px;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
+            font-style: italic;
+            font-weight: 500;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--bg-white) 0%, #f8f9fa 100%);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 18px 40px;
             border: none;
-            padding: 15px 40px;
+            border-radius: 50px;
             font-size: 16px;
             font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-            text-transform: uppercase;
+            box-shadow: 0 8px 25px var(--shadow);
             letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            background: var(--bg-white);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px var(--shadow-hover);
         }
 
-        /* Products Section */
-        .products-section {
-            padding: 80px 30px;
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: -50px auto 80px;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item {
+            background: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 107, 157, 0.1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .feature-item h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Container */
+        .container {
             max-width: 1300px;
             margin: 0 auto;
+            padding: 0 30px;
         }
 
         .section-title {
             text-align: center;
+            font-size: 2.8rem;
             margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 15px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: 2px;
         }
 
-        .section-title p {
-            color: var(--text-light);
-            font-size: 18px;
-        }
-
-        .products-grid {
+        /* Products */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .product-card {
             background: var(--bg-white);
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 8px 30px var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
             position: relative;
-            cursor: pointer;
+            border: 1px solid rgba(255, 107, 157, 0.1);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px var(--shadow-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
         }
 
         .tag-custom {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: linear-gradient(135deg, var(--accent), var(--primary-dark));
+            background: linear-gradient(135deg, var(--accent), var(--primary));
             color: white;
-            padding: 5px 12px;
+            padding: 8px 15px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             z-index: 2;
             box-shadow: 0 4px 15px rgba(255, 138, 91, 0.3);
         }
@@ -351,19 +430,21 @@
         }
 
         .product-cat {
-            color: var(--primary);
-            font-size: 14px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
         }
 
         .product-name {
-            color: var(--text-dark);
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 15px;
+            color: var(--text-dark);
             text-decoration: none;
             display: block;
             line-height: 1.4;
@@ -374,98 +455,110 @@
         }
 
         .product-price {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
-            color: var(--primary-dark);
+            color: var(--primary);
             margin-bottom: 20px;
         }
 
         .add-to-cart {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 700;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
             transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 14px;
         }
 
         .add-to-cart:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
-        }
-
-        .add-to-cart i {
-            margin-right: 8px;
+            box-shadow: 0 8px 25px var(--shadow);
         }
 
         /* Upload Section */
         .upload-section {
             background: var(--bg-white);
-            padding: 50px;
             border-radius: 25px;
-            box-shadow: 0 10px 40px var(--shadow);
+            padding: 50px;
+            margin: 60px auto;
             text-align: center;
-            margin-top: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 2px dashed var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,107,157,0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .upload-section h3 {
-            font-size: 24px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--primary);
-            margin-bottom: 15px;
             font-weight: 700;
         }
 
         .upload-section p {
+            font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 30px;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         .upload-area {
-            border: 3px dashed var(--primary-light);
-            border-radius: 15px;
-            padding: 40px 20px;
-            cursor: pointer;
+            border: 2px dashed var(--primary-light);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            background: rgba(255, 107, 157, 0.02);
             transition: all 0.3s;
-            background: var(--bg-light);
-            position: relative;
-            overflow: hidden;
+            cursor: pointer;
         }
 
         .upload-area:hover {
             border-color: var(--primary);
             background: rgba(255, 107, 157, 0.05);
-            transform: scale(1.02);
         }
 
         .upload-area.dragover {
             border-color: var(--primary);
             background: rgba(255, 107, 157, 0.1);
+            transform: scale(1.02);
         }
 
         .upload-icon {
             font-size: 48px;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .upload-text {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 1.2rem;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .upload-hint {
-            font-size: 14px;
             color: var(--text-light);
+            font-size: 14px;
         }
 
         .file-input {
@@ -479,84 +572,100 @@
         .file-item {
             display: flex;
             align-items: center;
-            background: var(--bg-light);
-            padding: 10px 15px;
-            border-radius: 10px;
+            background: rgba(255, 107, 157, 0.1);
+            padding: 15px;
+            border-radius: 15px;
             margin: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .file-item i {
+        .file-icon {
+            font-size: 20px;
             color: var(--primary);
-            margin-right: 10px;
+            margin-right: 15px;
         }
 
-        .file-item .file-name {
+        .file-info {
             flex: 1;
-            font-weight: 500;
         }
 
-        .file-item .file-size {
+        .file-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .file-size {
             color: var(--text-light);
             font-size: 12px;
         }
 
-        /* Modal Styles */
+        .file-preview {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-left: 15px;
+        }
+
+        /* Cart Modal */
         .modal {
             display: none;
             position: fixed;
-            z-index: 2000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
             backdrop-filter: blur(5px);
-            animation: fadeInUp 0.3s ease-out;
         }
 
         .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: fadeInUp 0.3s ease-out;
         }
 
         .modal-content {
             background: var(--bg-white);
-            border-radius: 20px;
+            border-radius: 25px;
             width: 90%;
             max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: slideInRight 0.3s ease-out;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: bounceIn 0.5s ease-out;
         }
 
         .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 25px;
+            border-radius: 25px 25px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 30px;
-            border-bottom: 2px solid var(--bg-light);
         }
 
         .modal-title {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary);
+            margin: 0;
         }
 
         .close-modal {
             background: none;
             border: none;
-            font-size: 30px;
-            color: var(--text-light);
+            color: white;
+            font-size: 24px;
             cursor: pointer;
-            transition: color 0.3s;
+            padding: 5px;
+            transition: transform 0.2s;
         }
 
         .close-modal:hover {
-            color: var(--danger);
+            transform: scale(1.1);
         }
 
         .modal-body {
@@ -565,79 +674,110 @@
 
         .cart-item {
             display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid var(--bg-light);
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.1);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
         }
 
         .cart-item-img {
             width: 80px;
             height: 80px;
+            border-radius: 15px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-right: 15px;
+            flex-shrink: 0;
         }
 
         .cart-item-info {
             flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .cart-item-name {
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .cart-item-price {
             color: var(--primary);
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         .cart-item-controls {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .quantity-btn {
-            background: var(--bg-light);
+            background: var(--primary-light);
+            color: white;
             border: none;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: bold;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .quantity-btn:hover {
-            background: var(--primary-light);
-            color: white;
+            background: var(--primary);
+            transform: scale(1.1);
         }
 
-        .quantity-display {
-            font-weight: 600;
+        .quantity {
+            font-weight: 700;
+            color: var(--text-dark);
             min-width: 30px;
             text-align: center;
+            font-size: 15px;
         }
 
         .remove-item {
             background: var(--danger);
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
+            padding: 6px 12px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s;
+            font-size: 13px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
         }
 
         .remove-item:hover {
+            transform: scale(1.05);
             background: #c0392b;
         }
 
         .cart-total {
-            background: var(--bg-light);
+            background: rgba(255, 107, 157, 0.1);
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
@@ -645,32 +785,26 @@
         }
 
         .total-amount {
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--primary);
         }
 
         .empty-cart {
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px;
             color: var(--text-light);
         }
 
         .empty-cart i {
-            font-size: 64px;
+            font-size: 4rem;
             margin-bottom: 20px;
-            color: var(--bg-light);
+            opacity: 0.3;
         }
 
-        /* Form Styles */
+        /* Checkout Form */
         .checkout-form {
             margin-top: 20px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
         }
 
         .form-group {
@@ -679,311 +813,52 @@
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
             font-weight: 600;
             color: var(--text-dark);
+            margin-bottom: 8px;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--bg-light);
-            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            border-radius: 15px;
             font-size: 16px;
             transition: border-color 0.3s;
-            font-family: inherit;
         }
 
         .form-input:focus {
-            outline: none;
             border-color: var(--primary);
-        }
-
-        /* Chatbot Widget */
-        .chatbot-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1500;
-        }
-
-        .chat-toggle-btn {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .chat-toggle-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
-        }
-
-        .chat-notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--danger);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-        }
-
-        .chat-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            height: 500px;
-            background: var(--bg-white);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            animation: slideInRight 0.3s ease-out;
-        }
-
-        .chat-window.show {
-            display: flex;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .chat-header-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .bot-avatar {
-            font-size: 24px;
-            margin-right: 15px;
-        }
-
-        .bot-info h4 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .bot-status {
-            display: flex;
-            align-items: center;
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-
-        .chat-close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .chat-close-btn:hover {
-            opacity: 1;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .chat-message {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .chat-message.user {
-            justify-content: flex-end;
-        }
-
-        .message-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-
-        .chat-message.user .message-avatar {
-            background: var(--primary-light);
-            order: 2;
-            margin-right: 0;
-            margin-left: 10px;
-        }
-
-        .message-bubble {
-            background: var(--bg-light);
-            padding: 12px 16px;
-            border-radius: 18px;
-            max-width: 250px;
-            line-height: 1.4;
-            font-size: 14px;
-        }
-
-        .chat-message.user .message-bubble {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-        }
-
-        .typing-indicator {
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .typing-indicator.show {
-            opacity: 1;
-        }
-
-        .typing-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--primary-light);
-            border-radius: 50%;
-            margin: 0 2px;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .quick-actions {
-            padding: 15px 20px;
-            border-top: 1px solid var(--bg-light);
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .quick-action-btn {
-            background: var(--bg-light);
-            border: 1px solid var(--primary-light);
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s;
-            color: var(--text-dark);
-        }
-
-        .quick-action-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .chat-input-area {
-            padding: 15px 20px;
-            border-top: 1px solid var(--bg-light);
-        }
-
-        .chat-input-wrapper {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 2px solid var(--bg-light);
-            border-radius: 25px;
             outline: none;
-            font-size: 14px;
-            transition: border-color 0.3s;
         }
 
-        .chat-input:focus {
-            border-color: var(--primary);
-        }
-
-        .chat-send-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .chat-send-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--text-dark) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
             color: white;
             padding: 60px 30px 30px;
             margin-top: 80px;
         }
 
         .footer-grid {
-            max-width: 1300px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .footer-col h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
             color: var(--primary-light);
-        }
-
-        .footer-col p {
-            line-height: 1.6;
-            opacity: 0.9;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .footer-col ul {
@@ -992,237 +867,581 @@
 
         .footer-col ul li {
             margin-bottom: 12px;
-            opacity: 0.9;
-            transition: opacity 0.3s;
+            transition: color 0.3s;
         }
 
         .footer-col ul li:hover {
-            opacity: 1;
-        }
-
-        .footer-col ul li i {
-            margin-right: 8px;
             color: var(--primary-light);
         }
 
-        .footer-col ul li a {
-            color: white;
-            text-decoration: none;
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--primary-light);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 107, 157, 0.2);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Responsive Design */
+        /* Float Buttons */
+        .float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn a {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .float-btn a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .zalo-btn {
+            background: linear-gradient(135deg, #0180c7, #0066cc);
+        }
+
+        .fb-btn {
+            background: linear-gradient(135deg, #1877f2, #0e5bc4);
+        }
+
+        .mess-btn {
+            background: linear-gradient(135deg, #0084ff, #0066cc);
+        }
+
+        /* Success Animation */
+        .success-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 10001;
+            animation: bounceIn 0.5s ease-out;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 15px 20px;
-            }
-
             .nav-menu {
-                gap: 20px;
-                font-size: 14px;
+                display: none;
             }
-
-            .logo {
-                font-size: 24px;
-            }
-
+            
             .hero h1 {
-                font-size: 32px;
+                font-size: 2.2rem;
             }
-
+            
             .hero p {
-                font-size: 16px;
+                font-size: 1.1rem;
             }
-
-            .products-grid {
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
-
-            .section-title h2 {
-                font-size: 28px;
+            
+            .float-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .float-btn a {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
             }
 
             .upload-section {
+                margin: 30px 15px;
                 padding: 30px 20px;
+            }
+
+            .modal-content {
+                margin: 20px;
+                width: calc(100% - 40px);
             }
 
             .form-row {
                 grid-template-columns: 1fr;
             }
 
-            .chat-window {
-                width: 90vw;
-                height: 80vh;
-                bottom: 20px;
-                right: 5vw;
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .modal-content {
-                width: 95%;
-                margin: 20px;
+            .cart-item-img {
+                margin: 0 0 15px 0;
             }
         }
 
-        /* Success Messages */
-        .success-message {
-            background: var(--success);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            display: none;
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .success-message i {
-            margin-right: 10px;
-        }
-
-        /* Loading States */
+        /* Loading Animation */
         .loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .spinner {
-            border: 3px solid var(--bg-light);
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
+            display: inline-block;
             width: 20px;
             height: 20px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
         }
 
-        /* Notification Styles */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Chatbot Widget */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 250px;
+            right: 30px;
+            z-index: 10000;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        /* Chat Window */
+        .chat-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 400px;
+            height: 600px;
+            background: var(--bg-white);
+            border-radius: 25px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: bounceIn 0.4s ease-out;
+        }
+
+        .chat-window.show {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--gradient);
+            padding: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bot-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .bot-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .bot-details h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .bot-status {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .chat-close:hover {
+            opacity: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 12px;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .chat-message.user .message-avatar {
+            background: var(--text-muted);
+            order: 2;
+            margin-right: 0;
+            margin-left: 12px;
+        }
+
+        .message-bubble {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 280px;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .chat-message.user .message-bubble {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .typing-dots {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-radius: 20px;
+            display: flex;
+            gap: 4px;
+            margin-left: 47px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-quick-actions {
+            padding: 20px 25px;
+            border-top: 1px solid var(--bg-light);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: var(--bg-light);
+            border: 1px solid var(--primary-light);
+            color: var(--text-dark);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .chat-input-area {
+            padding: 25px;
+            border-top: 1px solid var(--bg-light);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid var(--bg-light);
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+        }
+
+        .chat-send-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Notification */
         .notification {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            z-index: 3000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease-out;
-        }
-
-        .notification.show {
-            transform: translateX(0);
+            top: 100px;
+            right: 30px;
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-left: 5px solid var(--success);
+            z-index: 10000;
+            animation: slideInRight 0.5s ease-out;
+            max-width: 300px;
         }
 
         .notification.error {
-            background: var(--danger);
+            border-left-color: var(--danger);
         }
 
-        .notification.warning {
-            background: var(--warning);
+        .notification-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .notification-message {
+            color: var(--text-light);
+            font-size: 14px;
         }
     </style>
 </head>
-
 <body>
-    <!-- Top Bar -->
+
     <div class="top-bar">
-        <i class="fas fa-gift"></i>
-        MIỄN PHÍ THIẾT KẾ - GIAO HÀNG TOÀN QUỐC - ƯU ĐÃI LỚN CHO ĐƠN HÀNG TỪ 500K
+        <i class="fas fa-gift"></i> Miễn phí thiết kế & Giao hàng toàn quốc cho đơn từ 500k!
     </div>
 
-    <!-- Header -->
     <header>
-        <nav class="nav-container">
+        <div class="nav-container">
             <div class="logo">RÔ RI SHOP</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Trang chủ</a></li>
-                <li><a href="#products">Sản phẩm</a></li>
-                <li><a href="#about">Giới thiệu</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#products">Ly & Cốc</a></li>
+                    <li><a href="#products">Áo Thun</a></li>
+                    <li><a href="#products">Set Quà Tặng</a></li>
+                    <li><a href="#products">Mẫu Design</a></li>
+                </ul>
+            </nav>
             <div class="cart-icon" onclick="openCartModal()">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount" style="display: none;">0</span>
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count">0</span>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="hero-content">
-            <h1>In Điều Bạn Muốn<br>Tặng Điều Bạn Thương</h1>
-            <p>Chuyên các sản phẩm quà tặng cá nhân hóa độc đáo - Ly, cốc, áo thun, tranh canvas...</p>
-            <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
-                <i class="fas fa-shopping-bag"></i> XEM SẢN PHẨM
-            </button>
+            <h1>IN ĐIỀU BẠN MUỐN<br>TẶNG ĐIỀU BẠN THƯƠNG</h1>
+            <p>Chuyên quà tặng cá nhân hóa - Biến ý tưởng của bạn thành hiện thực</p>
+            <a href="#products" class="btn-primary">XEM MẪU NGAY</a>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <h2>SẢN PHẨM NỔI BẬT</h2>
-            <p>Những sản phẩm độc đáo được thiết kế riêng cho bạn</p>
+    <div class="features">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
+            <h4>Thiết Kế Miễn Phí</h4>
+            <p>Theo yêu cầu riêng của bạn</p>
         </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h4>Lấy Ngay/Nhanh</h4>
+            <p>Hoàn thiện trong 24-48h</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+            <h4>Chất Lượng Cao</h4>
+            <p>Bền màu, in sắc nét</p>
+        </div>
+    </div>
 
-        <div class="products-grid">
+    <div class="container" id="products">
+        <h2 class="section-title">SẢN PHẨM IN THEO YÊU CẦU</h2>
+        
+        <div class="product-grid">
+            <!-- SP 1 -->
             <div class="product-card">
-                <span class="tag-custom">🔥 Best Seller</span>
-                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763719899/569064845_3776854105886058_4142418458772644736_n_vmxnyf.jpg" 
-                    alt="Ly Sứ In Hình" class="product-img">
+                <span class="tag-custom">🔥 Hot Trend</span>
+                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763721334/484905134_598476833183166_7984425220707289514_n_gq95no.jpg" 
+                    alt="Ly sứ" class="product-img">
                 <div class="product-info">
                     <div class="product-cat">Ly & Cốc</div>
-                    <a href="#" class="product-name">Ly Sứ In Hình Theo Yêu Cầu</a>
-                    <div class="product-price">120.000đ</div>
-                    <button class="add-to-cart" onclick="addToCart(1, 'Ly Sứ In Hình Theo Yêu Cầu', 120000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763719899/569064845_3776854105886058_4142418458772644736_n_vmxnyf.jpg')">
+                    <a href="#" class="product-name">Ly Sứ Trắng In Hình Cá Nhân</a>
+                    <div class="product-price">89.000đ</div>
+                    <button class="add-to-cart" onclick="addToCart(1, 'Ly Sứ Trắng In Hình Cá Nhân', 89000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763721334/484905134_598476833183166_7984425220707289514_n_gq95no.jpg')">
                         <i class="fas fa-cart-plus"></i> Thêm Vào Giỏ
                     </button>
                 </div>
             </div>
 
+            <!-- SP 2 -->
             <div class="product-card">
-                <span class="tag-custom">🌟 Mới</span>
-                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763720360/575751970_3792779777626824_5457037055033906036_n_xjhwjg.jpg" 
-                    alt="Bình Giữ Nhiệt" class="product-img">
+                <span class="tag-custom">⭐ Khắc Tên</span>
+                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763721413/487823202_613120185052164_190005225933128752_n_hnrjkp.jpg" 
+                    alt="Bình giữ nhiệt" class="product-img">
                 <div class="product-info">
                     <div class="product-cat">Bình Giữ Nhiệt</div>
-                    <a href="#" class="product-name">Bình Giữ Nhiệt In Logo Công Ty</a>
-                    <div class="product-price">250.000đ</div>
-                    <button class="add-to-cart" onclick="addToCart(2, 'Bình Giữ Nhiệt In Logo Công Ty', 250000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763720360/575751970_3792779777626824_5457037055033906036_n_xjhwjg.jpg')">
+                    <a href="#" class="product-name">Bình Giữ Nhiệt</a>
+                    <div class="product-price">159.000đ</div>
+                    <button class="add-to-cart" onclick="addToCart(2, 'Bình Giữ Nhiệt', 159000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763721413/487823202_613120185052164_190005225933128752_n_hnrjkp.jpg')">
                         <i class="fas fa-cart-plus"></i> Thêm Vào Giỏ
                     </button>
                 </div>
             </div>
 
+            <!-- SP 3 -->
             <div class="product-card">
-                <span class="tag-custom">👕 Thời trang</span>
-                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763720604/498096056_652336837821499_6766952987013647625_n_n5gvty.jpg" 
-                    alt="Áo Thun" class="product-img">
+                <span class="tag-custom">👕 Áo Nhóm/Lớp</span>
+                <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763721556/490011076_621066777590838_6075849886795331483_n_pcm0mi.jpg" 
+                    alt="Áo thun" class="product-img">
                 <div class="product-info">
-                    <div class="product-cat">Áo Thun</div>
-                    <a href="#" class="product-name">Áo Thun In Hình Theo Thiết Kế</a>
-                    <div class="product-price">180.000đ</div>
-                    <button class="add-to-cart" onclick="addToCart(3, 'Áo Thun In Hình Theo Thiết Kế', 180000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763720604/498096056_652336837821499_6766952987013647625_n_n5gvty.jpg')">
+                    <div class="product-cat">Thời Trang</div>
+                    <a href="#" class="product-name">Áo Thun In Ảnh/Logo Theo Yêu Cầu</a>
+                    <div class="product-price">120.000đ</div>
+                    <button class="add-to-cart" onclick="addToCart(3, 'Áo Thun In Ảnh/Logo Theo Yêu Cầu', 120000, 'https://res.cloudinary.com/dbywqqpab/image/upload/v1763721556/490011076_621066777590838_6075849886795331483_n_pcm0mi.jpg')">
                         <i class="fas fa-cart-plus"></i> Thêm Vào Giỏ
                     </button>
                 </div>
             </div>
 
+            <!-- SP 4 -->
             <div class="product-card">
                 <span class="tag-custom">🎁 Quà 20/11</span>
                 <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763720750/581926840_796144463416401_9170087878690403193_n_csdyhp.jpg" 
-                    alt="Set quà tặng" class="product-img">
+                    alt="Set quà tặng Rô Ri Shop" class="product-img">
                 <div class="product-info">
                     <div class="product-cat">Set Quà Tặng</div>
                     <a href="#" class="product-name">Box Quà Tặng 20/11 - Thiết Kế Theo Yêu Cầu</a>
@@ -1233,10 +1452,11 @@
                 </div>
             </div>
 
+            <!-- SP 5 -->
             <div class="product-card">
                 <span class="tag-custom">🔑 Móc khóa</span>
                 <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763721738/496712766_645639375133578_3697944168879342182_n_c7dcfe.jpg" 
-                    alt="Móc khóa" class="product-img">
+                    alt="Móc khóa theo yêu cầu" class="product-img">
                 <div class="product-info">
                     <div class="product-cat">Móc Khóa</div>
                     <a href="#" class="product-name">Móc Khóa In Hình Theo Yêu Cầu</a>
@@ -1247,10 +1467,12 @@
                 </div>
             </div>
 
+            <!-- SP 6 -->
             <div class="product-card">
                 <span class="tag-custom">👜 Túi Tote</span>
                 <img src="https://res.cloudinary.com/dbywqqpab/image/upload/v1763722056/497839745_649815624715953_4386892076233124128_n_cljs6y.jpg"
-                    alt="Túi Tote" class="product-img">
+                    alt="Túi Tote thiết kế theo yêu cầu" 
+                    class="product-img">
                 <div class="product-info">
                     <div class="product-cat">Túi Tote</div>
                     <a href="#" class="product-name">Túi Tote In Hình / Logo Theo Yêu Cầu</a>
@@ -1262,11 +1484,12 @@
             </div>
         </div>
 
+        <!-- Upload Section -->
         <div class="upload-section">
             <h3><i class="fas fa-cloud-upload-alt"></i> BẠN ĐÃ CÓ FILE THIẾT KẾ?</h3>
             <p>Gửi ngay ảnh của bạn, Rô Ri Shop sẽ in thử mẫu demo gửi lại bạn xem trước!</p>
             
-            <div class="upload-area" id="uploadArea">
+            <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
                 <div class="upload-icon">
                     <i class="fas fa-cloud-upload-alt"></i>
                 </div>
@@ -1281,7 +1504,7 @@
                 <i class="fab fa-facebook-messenger"></i> GỬI ẢNH QUA MESSENGER
             </button>
         </div>
-    </section>
+    </div>
 
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
@@ -1319,93 +1542,92 @@
                         <label class="form-label">Ghi chú</label>
                         <textarea class="form-input" id="orderNote" rows="3" placeholder="Yêu cầu đặc biệt, thiết kế, màu sắc..."></textarea>
                     </div>
-                    <button class="btn-primary" onclick="submitOrder()" style="width: 100%; margin-top: 20px;">
+                    <button id="submitOrderBtn" class="btn-primary" onclick="submitOrder(this)" style="width: 100%; margin-top: 20px;">
                         <i class="fas fa-paper-plane"></i> ĐẶT HÀNG NGAY
                     </button>
-                </div>
-                <div id="successMessage" class="success-message">
-                    <i class="fas fa-check-circle"></i>
-                    Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Chatbot Widget -->
+   <!-- Chatbot Widget -->
     <div class="chatbot-widget">
-        <button class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()">
+        <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
             <i class="fas fa-comments"></i>
-            <span class="chat-notification-badge" id="chatBadge" style="display: none;">1</span>
+            <div class="notification-badge" id="notificationBadge">1</div>
         </button>
 
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
-                <div class="chat-header-info">
-                    <div class="bot-avatar">🤖</div>
-                    <div class="bot-info">
-                        <h4>RIO BOT</h4>
+                <div class="bot-info">
+                    <div class="bot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-details">
+                        <h4>RIO Bot</h4>
                         <div class="bot-status">
-                            <span class="status-dot"></span>
-                            <span>Đang hoạt động</span>
+                            <div class="status-dot"></div>
+                            Đang hoạt động
                         </div>
                     </div>
                 </div>
-                <button class="chat-close-btn" onclick="toggleChat()">
+                <button class="chat-close" onclick="toggleChat()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <div class="chat-messages" id="chatMessages">
                 <div class="chat-message bot">
-                    <div class="message-avatar">🤖</div>
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
                     <div class="message-bubble">
-                        Xin chào! Tôi là RIO BOT, trợ lý tư vấn của Rô Ri Shop. 
-                        Tôi có thể giúp bạn tìm hiểu về sản phẩm, giá cả, chính sách giao hàng. 
-                        Bạn cần tư vấn gì hôm nay? 😊
+                        Xin chào! Tôi là RIO Bot - trợ lý ảo của Rô Ri Shop 🤖
+                        
+                        Tôi có thể giúp bạn:
+                        • Tư vấn sản phẩm và giá cả
+                        • Hướng dẫn đặt hàng
+                        • Thông tin về thời gian giao hàng
+                        • Chính sách đổi trả
+                        
+                        Bạn cần hỗ trợ gì hôm nay? 😊
                     </div>
                 </div>
             </div>
 
-            <div class="typing-indicator" id="typingIndicator">
-                <div class="message-avatar">🤖</div>
-                <div class="message-bubble">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            </div>
-
-            <div class="quick-actions">
-                <button class="quick-action-btn" onclick="sendQuickMessage('Có những sản phẩm nào?')">
+            <div class="chat-quick-actions">
+                <button class="quick-btn" onclick="askQuestion('Có những sản phẩm nào?')">
                     📦 Sản phẩm
                 </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('Giá cả thế nào?')">
+                <button class="quick-btn" onclick="askQuestion('Giá cả thế nào?')">
                     💰 Giá cả
                 </button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('Giao hàng như thế nào?')">
+                <button class="quick-btn" onclick="askQuestion('Làm sao để đặt hàng?')">
+                    🛒 Đặt hàng
+                </button>
+                <button class="quick-btn" onclick="askQuestion('Giao hàng như thế nào?')">
                     🚚 Giao hàng
+                </button>
+                <button class="quick-btn" onclick="askQuestion('Liên hệ')">
+                    📞 Liên hệ
                 </button>
             </div>
 
             <div class="chat-input-area">
                 <div class="chat-input-wrapper">
-                    <input 
-                        type="text" 
-                        class="chat-input" 
-                        id="chatInput" 
-                        placeholder="Nhập tin nhắn..."
-                        onkeypress="handleChatKeyPress(event)"
-                    >
-                    <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">
+                    <input type="text" 
+                           class="chat-input" 
+                           id="messageInput" 
+                           placeholder="Nhập câu hỏi của bạn..."
+                           onkeypress="handleKeyPress(event)">
+                    <button class="chat-send-btn" onclick="sendMessage()">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>RÔ RI SHOP</h3>
@@ -1419,55 +1641,51 @@
                     <li>Áo Thun</li>
                     <li>Tranh Canvas</li>
                     <li>Set Quà Tặng</li>
-                    <li>Móc Khóa</li>
-                    <li>Túi Tote</li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>LIÊN HỆ</h3>
                 <ul>
-                    <li><i class="fas fa-phone"></i> Hotline: 0905 298 298</li>
-                    <li><i class="fas fa-envelope"></i> Email: contact@rorishop.com</li>
-                    <li><i class="fab fa-facebook"></i> Facebook: /rorishop.official</li>
-                    <li><i class="fab fa-instagram"></i> Instagram: @rorishop</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: Hà Nội, Việt Nam</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>CHÍNH SÁCH</h3>
-                <ul>
-                    <li>Chính sách đổi trả</li>
-                    <li>Chính sách bảo mật</li>
-                    <li>Điều khoản sử dụng</li>
-                    <li>Hướng dẫn đặt hàng</li>
-                    <li>Chính sách giao hàng</li>
+                    <li><i class="fas fa-phone"></i> Hotline: 09xx.xxx.xxx</li>
+                    <li><i class="fas fa-envelope"></i> Email: rorishop@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: [Địa chỉ của shop]</li>
+                    <li><i class="fab fa-facebook"></i> Facebook: Rô Ri Shop</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Rô Ri Shop. Tất cả quyền được bảo lưu.</p>
+            &copy; 2024 Rô Ri Shop. All Rights Reserved. | Made with ❤️
         </div>
     </footer>
 
+    <div class="float-btn">
+        <a href="https://zalo.me/[SỐ-ZALO-CỦA-BẠN]" class="zalo-btn" title="Chat Zalo" target="_blank">
+            <i class="fas fa-comment-dots"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100090625646555" class="fb-btn" title="Facebook Page" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://m.me/100090625646555" class="mess-btn" title="Chat Messenger" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+    </div>
+
+    <!-- Facebook Messenger Plugin -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=YOUR_APP_ID"></script>
+
     <script>
-        // Cart functionality
-        let cart = JSON.parse(localStorage.getItem('rorishop_cart') || '[]');
-        let isFirstVisit = !localStorage.getItem('rorishop_visited');
+        // Global Variables
+        let cart = JSON.parse(localStorage.getItem('rorishop_cart')) || [];
+        let uploadedFiles = [];
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            updateCartDisplay();
-            initializeUpload();
-            
-            if (isFirstVisit) {
-                localStorage.setItem('rorishop_visited', 'true');
-                setTimeout(() => {
-                    document.getElementById('chatBadge').style.display = 'block';
-                }, 3000);
-            }
+            updateCartCount();
+            setupUploadHandlers();
         });
 
-        // Cart Management
+        // Cart Functions
         function addToCart(id, name, price, image) {
             const existingItem = cart.find(item => item.id === id);
             
@@ -1475,84 +1693,44 @@
                 existingItem.quantity += 1;
             } else {
                 cart.push({
-                    id,
-                    name,
-                    price,
-                    image,
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
                     quantity: 1
                 });
             }
             
-            updateCartDisplay();
-            saveCart();
-            showNotification('Đã thêm sản phẩm vào giỏ hàng!', 'success');
-            
-            // Animate cart icon
-            const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.style.animation = 'pulse 0.6s ease-in-out';
-            setTimeout(() => {
-                cartIcon.style.animation = '';
-            }, 600);
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            updateCartDisplay();
-            saveCart();
-            displayCartItems();
-        }
-
-        function updateQuantity(id, change) {
-            const item = cart.find(item => item.id === id);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(id);
-                } else {
-                    updateCartDisplay();
-                    saveCart();
-                    displayCartItems();
-                }
-            }
-        }
-
-        function updateCartDisplay() {
-            const cartCount = document.getElementById('cartCount');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            if (totalItems > 0) {
-                cartCount.textContent = totalItems;
-                cartCount.style.display = 'block';
-            } else {
-                cartCount.style.display = 'none';
-            }
-        }
-
-        function saveCart() {
             localStorage.setItem('rorishop_cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification('Thành công', `${name} đã được thêm vào giỏ hàng!`);
         }
 
-        // Modal Management
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
         function openCartModal() {
             document.getElementById('cartModal').classList.add('show');
-            displayCartItems();
+            renderCartItems();
         }
 
         function closeCartModal() {
             document.getElementById('cartModal').classList.remove('show');
         }
 
-        function displayCartItems() {
-            const cartItems = document.getElementById('cartItems');
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
             const checkoutForm = document.getElementById('checkoutForm');
             
             if (cart.length === 0) {
-                cartItems.innerHTML = `
+                cartItemsContainer.innerHTML = `
                     <div class="empty-cart">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-shopping-bag"></i>
                         <h3>Giỏ hàng trống</h3>
-                        <p>Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                        <p>Hãy thêm sản phẩm để bắt đầu mua sắm!</p>
                     </div>
                 `;
                 cartTotal.style.display = 'none';
@@ -1560,31 +1738,59 @@
                 return;
             }
             
+            let html = '';
             let total = 0;
-            cartItems.innerHTML = cart.map(item => {
-                total += item.price * item.quantity;
-                return `
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                html += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.name}" class="cart-item-img">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">${formatPrice(item.price)}</div>
                             <div class="cart-item-controls">
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
-                                <span class="quantity-display">${item.quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
                                 <button class="remove-item" onclick="removeFromCart(${item.id})">
-                                    <i class="fas fa-trash"></i> Xóa
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 `;
-            }).join('');
+            });
             
+            cartItemsContainer.innerHTML = html;
             document.querySelector('.total-amount').textContent = formatPrice(total);
             cartTotal.style.display = 'block';
             checkoutForm.style.display = 'block';
+        }
+
+        function updateQuantity(id, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(id);
+                return;
+            }
+            
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = newQuantity;
+                localStorage.setItem('rorishop_cart', JSON.stringify(cart));
+                updateCartCount();
+                renderCartItems();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('rorishop_cart', JSON.stringify(cart));
+            updateCartCount();
+            renderCartItems();
+            showNotification('Đã xóa', 'Sản phẩm đã được xóa khỏi giỏ hàng');
         }
 
         function formatPrice(price) {
@@ -1594,231 +1800,267 @@
             }).format(price);
         }
 
-        // Order Submission
-        function submitOrder() {
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const address = document.getElementById('customerAddress').value;
+        // Upload Functions
+        function setupUploadHandlers() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+            fileInput.addEventListener('change', handleFileSelect);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            document.getElementById('uploadArea').classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            document.getElementById('uploadArea').classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('uploadArea').classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        }
+
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                    showNotification('Lỗi', `File ${file.name} quá lớn. Vui lòng chọn file nhỏ hơn 10MB.`, true);
+                    return;
+                }
+
+                if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
+                    showNotification('Lỗi', `File ${file.name} không đúng định dạng. Vui lòng chọn file ảnh hoặc PDF.`, true);
+                    return;
+                }
+
+                uploadedFiles.push(file);
+                displayUploadedFile(file);
+            });
+        }
+
+        function displayUploadedFile(file) {
+            const uploadedFilesContainer = document.getElementById('uploadedFiles');
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
             
-            if (!name || !phone || !address) {
-                showNotification('Vui lòng điền đầy đủ thông tin bắt buộc!', 'error');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                fileItem.innerHTML = `
+                    <div class="file-icon">
+                        <i class="fas ${file.type.startsWith('image/') ? 'fa-image' : 'fa-file-pdf'}"></i>
+                    </div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatFileSize(file.size)}</div>
+                    </div>
+                    ${file.type.startsWith('image/') ? `<img src="${e.target.result}" class="file-preview" alt="Preview">` : ''}
+                `;
+            };
+            reader.readAsDataURL(file);
+            
+            uploadedFilesContainer.appendChild(fileItem);
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Messenger Integration
+        function sendToMessenger() {
+            if (uploadedFiles.length === 0) {
+                showNotification('Thông báo', 'Vui lòng chọn ít nhất 1 file để gửi!', true);
                 return;
             }
-            
-            // Show loading state
-            const submitBtn = event.target;
-            submitBtn.innerHTML = '<div class="spinner"></div> Đang xử lý...';
-            submitBtn.disabled = true;
+
+            // Simulate sending to messenger
+            showNotification('Đang gửi...', 'Đang chuẩn bị gửi file qua Messenger...');
             
             setTimeout(() => {
+                // Create message for Messenger
+                const fileNames = uploadedFiles.map(f => f.name).join(', ');
+                const message = `Chào Rô Ri Shop! Tôi muốn thiết kế sản phẩm với ${uploadedFiles.length} file đính kèm: ${fileNames}`;
+                
+                // Open Messenger with pre-filled message
+                const messengerUrl = `https://m.me/100090625646555?ref=${encodeURIComponent(message)}`;
+                window.open(messengerUrl, '_blank');
+                
+                showNotification('Thành công', 'Đã chuyển đến Messenger! Vui lòng gửi file trong cuộc trò chuyện.');
+                
+                // Reset upload
+                uploadedFiles = [];
+                document.getElementById('uploadedFiles').innerHTML = '';
+                document.getElementById('fileInput').value = '';
+            }, 1500);
+        }
+
+        // Order Functions
+        function submitOrder(buttonElement) {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+
+            if (!name || !phone || !address) {
+                showNotification('Lỗi', 'Vui lòng điền đầy đủ thông tin bắt buộc!', true);
+                return;
+            }
+
+            if (cart.length === 0) {
+                showNotification('Lỗi', 'Giỏ hàng trống!', true);
+                return;
+            }
+
+            // Xác định nút submit (hoặc tìm theo id dự phòng)
+            const submitBtn = buttonElement || document.getElementById('submitOrderBtn');
+            const originalText = submitBtn.innerHTML;
+
+            // Trạng thái loading
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+
+            // Giả lập xử lý đơn hàng
+            setTimeout(() => {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const orderData = {
+                    customer: {
+                        name: name,
+                        phone: phone,
+                        email: document.getElementById('customerEmail').value.trim(),
+                        address: address
+                    },
+                    items: cart,
+                    total: total,
+                    note: document.getElementById('orderNote').value.trim(),
+                    orderTime: new Date().toISOString()
+                };
+
+                // Lưu đơn vào localStorage
+                const orders = JSON.parse(localStorage.getItem('rorishop_orders')) || [];
+                orders.push(orderData);
+                localStorage.setItem('rorishop_orders', JSON.stringify(orders));
+
+                // Xoá giỏ hàng
                 cart = [];
-                saveCart();
-                updateCartDisplay();
-                
-                document.getElementById('successMessage').classList.add('show');
-                document.getElementById('checkoutForm').style.display = 'none';
-                
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ĐẶT HÀNG NGAY';
+                localStorage.setItem('rorishop_cart', JSON.stringify(cart));
+                updateCartCount();
+                closeCartModal();
+
+                // Hiển thị popup thành công
+                showSuccessAnimation();
+
+                // Gửi nội dung đơn qua Messenger
+                sendOrderToMessenger(orderData);
+
+                // Reset form
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('customerEmail').value = '';
+                document.getElementById('customerAddress').value = '';
+                document.getElementById('orderNote').value = '';
+
+                // Khôi phục nút
+                submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                
-                setTimeout(() => {
-                    closeCartModal();
-                    document.getElementById('successMessage').classList.remove('show');
-                }, 3000);
             }, 2000);
         }
 
-        // File Upload Functionality
-        function initializeUpload() {
-            const uploadArea = document.getElementById('uploadArea');
-            const fileInput = document.getElementById('fileInput');
-            const uploadedFiles = document.getElementById('uploadedFiles');
 
-            uploadArea.addEventListener('click', () => fileInput.click());
+        function sendOrderToMessenger(orderData) {
+            const message = createOrderMessage(orderData);
+            // Thay YOUR_FACEBOOK_PAGE_ID bằng ID Page Facebook của shop
+            const facebookPageId = '100090625646555';
+            const messengerUrl = `https://m.me/${facebookPageId}?text=${encodeURIComponent(message)}`;
+            
+            // Mở Messenger trong tab/cửa sổ mới
+            window.open(messengerUrl, '_blank');
+        }
 
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('dragover');
-            });
-
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.classList.remove('dragover');
-            });
-
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('dragover');
-                handleFiles(e.dataTransfer.files);
-            });
-
-            fileInput.addEventListener('change', (e) => {
-                handleFiles(e.target.files);
-            });
-
-            function handleFiles(files) {
-                Array.from(files).forEach(file => {
-                    if (file.size > 10 * 1024 * 1024) {
-                        showNotification('File quá lớn! Vui lòng chọn file nhỏ hơn 10MB.', 'error');
-                        return;
-                    }
-                    
-                    if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
-                        showNotification('Chỉ hỗ trợ file ảnh (JPG, PNG) và PDF!', 'error');
-                        return;
-                    }
-                    
-                    addFileToDisplay(file);
-                });
+        function createOrderMessage(orderData) {
+            let message = `🛍️ *ĐƠN HÀNG MỚI - RÔ RI SHOP*\n\n`;
+            message += `👤 *Khách hàng:* ${orderData.customer.name}\n`;
+            message += `📞 *Điện thoại:* ${orderData.customer.phone}\n`;
+            if (orderData.customer.email) {
+                message += `📧 *Email:* ${orderData.customer.email}\n`;
             }
-
-            function addFileToDisplay(file) {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                    <i class="fas fa-file-${file.type.startsWith('image/') ? 'image' : 'pdf'}"></i>
-                    <span class="file-name">${file.name}</span>
-                    <span class="file-size">${formatFileSize(file.size)}</span>
-                `;
-                uploadedFiles.appendChild(fileItem);
+            message += `📍 *Địa chỉ:* ${orderData.customer.address}\n\n`;
+            
+            message += `🛍️ *Sản phẩm đặt hàng:*\n`;
+            orderData.items.forEach((item, index) => {
+                message += `${index + 1}. ${item.name}\n`;
+                message += `   - Số lượng: ${item.quantity}\n`;
+                message += `   - Đơn giá: ${formatPrice(item.price)}\n`;
+                message += `   - Thành tiền: ${formatPrice(item.price * item.quantity)}\n\n`;
+            });
+            
+            message += `💰 *TỔNG TIỀN: ${formatPrice(orderData.total)}*\n\n`;
+            
+            if (orderData.note) {
+                message += `📝 *Ghi chú:* ${orderData.note}\n\n`;
             }
-
-            function formatFileSize(bytes) {
-                if (bytes < 1024) return bytes + ' B';
-                if (bytes < 1048576) return Math.round(bytes / 1024) + ' KB';
-                return Math.round(bytes / 1048576) + ' MB';
-            }
+            
+            message += `🕐 *Thời gian đặt:* ${new Date(orderData.orderTime).toLocaleString('vi-VN')}\n\n`;
+            message += `Cảm ơn bạn đã tin tướng Rô Ri Shop! 💕`;
+            
+            return message;
         }
 
-        function sendToMessenger() {
-            window.open('https://m.me/rorishop.official', '_blank');
-        }
-
-        // Chatbot Functionality
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatBadge = document.getElementById('chatBadge');
-            
-            if (chatWindow.classList.contains('show')) {
-                chatWindow.classList.remove('show');
-            } else {
-                chatWindow.classList.add('show');
-                chatBadge.style.display = 'none';
-                setTimeout(() => {
-                    document.getElementById('chatInput').focus();
-                }, 300);
-            }
-        }
-
-        function sendChatMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            addMessageToChat('user', message, '👤');
-            input.value = '';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            // Simulate bot response
-            setTimeout(() => {
-                hideTypingIndicator();
-                const response = getBotResponse(message);
-                addMessageToChat('bot', response, '🤖');
-            }, 1000 + Math.random() * 2000);
-        }
-
-        function sendQuickMessage(message) {
-            document.getElementById('chatInput').value = message;
-            sendChatMessage();
-        }
-
-        function addMessageToChat(type, message, avatar) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message ${type}`;
-            messageDiv.innerHTML = `
-                <div class="message-avatar">${avatar}</div>
-                <div class="message-bubble">${message}</div>
+        function showSuccessAnimation() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-animation';
+            successDiv.innerHTML = `
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Đặt hàng thành công!</h3>
+                <p>Cảm ơn bạn đã tin tưởng Rô Ri Shop.<br>Chúng tôi sẽ liên hệ với bạn sớm nhất!</p>
             `;
             
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            document.getElementById('typingIndicator').classList.add('show');
-        }
-
-        function hideTypingIndicator() {
-            document.getElementById('typingIndicator').classList.remove('show');
-        }
-
-        function getBotResponse(message) {
-            const responses = {
-                products: [
-                    "Rô Ri Shop chuyên về ly sứ, bình giữ nhiệt, áo thun, tranh canvas, set quà tặng và nhiều sản phẩm khác! 🎁",
-                    "Chúng tôi có đầy đủ các sản phẩm từ ly cốc đến quần áo, tất cả đều có thể in theo yêu cầu của bạn! ✨"
-                ],
-                price: [
-                    "Giá sản phẩm của chúng tôi rất cạnh tranh: Ly sứ 120k, Bình giữ nhiệt 250k, Áo thun 180k... 💰",
-                    "Chúng tôi luôn có ưu đãi đặc biệt cho đơn hàng từ 500k! Gọi ngay 0905 298 298 để biết thêm chi tiết! 📞"
-                ],
-                shipping: [
-                    "Chúng tôi giao hàng toàn quốc trong 3-5 ngày làm việc. Miễn phí ship cho đơn từ 500k! 🚚",
-                    "Giao hàng nhanh chóng và an toàn. COD hoặc chuyển khoản đều được nhé! 📦"
-                ],
-                default: [
-                    "Cảm ơn bạn đã quan tâm! Bạn có thể gọi hotline 0905 298 298 hoặc nhắn tin để được tư vấn chi tiết hơn! 😊",
-                    "Rô Ri Shop luôn sẵn sàng hỗ trợ bạn! Hãy cho chúng tôi biết bạn muốn in sản phẩm gì nhé! 🎨",
-                    "Chúng tôi có thể thiết kế theo ý tưởng của bạn hoặc bạn có thể gửi file thiết kế sẵn! 💡"
-                ]
-            };
+            document.body.appendChild(successDiv);
             
-            const lowerMessage = message.toLowerCase();
-            
-            if (lowerMessage.includes('sản phẩm') || lowerMessage.includes('có gì') || lowerMessage.includes('bán gì')) {
-                return getRandomResponse(responses.products);
-            } else if (lowerMessage.includes('giá') || lowerMessage.includes('bao nhiều') || lowerMessage.includes('tiền')) {
-                return getRandomResponse(responses.price);
-            } else if (lowerMessage.includes('giao hàng') || lowerMessage.includes('ship') || lowerMessage.includes('nhận hàng')) {
-                return getRandomResponse(responses.shipping);
-            } else {
-                return getRandomResponse(responses.default);
-            }
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
         }
 
-        function getRandomResponse(responses) {
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-
-        function handleChatKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendChatMessage();
-            }
-        }
-
-        // Utility Functions
-        function showNotification(message, type = 'success') {
+        // Notification Function
+        function showNotification(title, message, isError = false) {
             const notification = document.createElement('div');
-            notification.className = `notification ${type} show`;
+            notification.className = `notification ${isError ? 'error' : ''}`;
             notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i>
-                ${message}
+                <div class="notification-title">${title}</div>
+                <div class="notification-message">${message}</div>
             `;
             
             document.body.appendChild(notification);
             
             setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
+                notification.remove();
+            }, 4000);
         }
 
-        // Smooth Scrolling
+        // Close modal when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCartModal();
+            }
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1832,54 +2074,492 @@
             });
         });
 
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target === modal) {
-                closeCartModal();
+            // File upload functions
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        }
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const notificationBadge = document.getElementById('notificationBadge');
+            const chatToggle = document.getElementById('chatToggle');
+            
+            if (chatWindow.classList.contains('show')) {
+                chatWindow.classList.remove('show');
+                chatToggle.classList.remove('active');
+            } else {
+                chatWindow.classList.add('show');
+                chatToggle.classList.add('active');
+                notificationBadge.style.display = 'none';
+                
+                // Focus on input
+                setTimeout(() => {
+                    document.getElementById('messageInput').focus();
+                }, 300);
             }
-        });
+        }
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Get bot response after delay
+            setTimeout(() => {
+                hideTyping();
+                const response = getBotResponse(message);
+                addMessage('bot', response);
+            }, 1000 + Math.random() * 2000);
+        }
+        // Global variables
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
+        // FAQ Data for chatbot
+        const faqData = [
+            {
+                keywords: ['sản phẩm', 'có những gì', 'dịch vụ', 'làm được gì'],
+                answer: `🌟 Rô Ri Shop chuyên về:
 
-        // Observe product cards
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.product-card').forEach(card => {
-                observer.observe(card);
-            });
-        });
+📱 **Ly & Cốc In Ấn**
+• Ly sứ trắng, ly màu
+• Cốc thủy tinh
+• Bình giữ nhiệt
+• Giá: 30.000đ - 250.000đ
 
-        // Performance optimization - Lazy loading images
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.style.opacity = '1';
-                        observer.unobserve(img);
+👕 **Áo Thun & Hoodie**
+• Áo thun cotton 100%
+• Hoodie dày dặn
+• In logo, hình ảnh, slogan
+• Giá: 120.000đ - 350.000đ
+
+🎁 **Box Quà Tặng**
+• Set quà cho ngày 20/10, 20/11
+• Quà sinh nhật, kỷ niệm
+• Thiết kế hộp độc quyền
+• Giá: 299.000đ - 599.000đ
+
+🔑 **Phụ Kiện**
+• Móc khóa acrylic
+• Túi tote canvas
+• Sticker, decal
+• Giá: 15.000đ - 89.000đ`
+            },
+            {
+                keywords: ['giá', 'giá cả', 'bao nhiêu', 'chi phí', 'tiền'],
+                answer: `💰 **Bảng Giá Tham Khảo:**
+
+🥤 **Ly & Cốc:**
+• Ly sứ trắng: 30.000đ - 89.000đ
+• Cốc thủy tinh: 45.000đ - 120.000đ  
+• Bình giữ nhiệt: 150.000đ - 250.000đ
+
+👕 **Áo Thun:**
+• Áo thun cotton: 120.000đ - 180.000đ
+• Hoodie: 250.000đ - 350.000đ
+
+🔑 **Phụ Kiện:**
+• Móc khóa: 15.000đ - 30.000đ
+• Túi tote: 50.000đ - 89.000đ
+
+🎁 **Set Quà:**
+• Box quà nhỏ: 299.000đ
+• Box quà lớn: 450.000đ - 599.000đ
+
+💡 *Giá có thể thay đổi tùy theo thiết kế và số lượng*
+📞 Gọi 0905.298.298 để được báo giá chính xác!`
+            },
+            {
+                keywords: ['đặt hàng', 'order', 'mua', 'làm sao', 'cách đặt'],
+                answer: `🛒 **Cách Đặt Hàng Tại Rô Ri Shop:**
+
+**Bước 1:** Chọn sản phẩm
+• Xem catalog trên website
+• Hoặc đến shop trực tiếp
+
+**Bước 2:** Gửi thiết kế
+• Upload file qua website
+• Gửi qua Messenger Facebook
+• Mang file đến shop
+
+**Bước 3:** Tư vấn & báo giá
+• Shop tư vấn thiết kế
+• Báo giá chính xác
+• Thời gian hoàn thành
+
+**Bước 4:** Thanh toán
+• Đặt cọc 50%
+• Thanh toán khi nhận hàng
+
+**Bước 5:** Nhận hàng
+• Giao hàng tận nơi
+• Nhận tại shop
+
+📞 **Liên hệ:** 0905.298.298
+💬 **Messenger:** m.me/rorishop.official`
+            },
+            {
+                keywords: ['giao hàng', 'ship', 'vận chuyển', 'nhận hàng', 'delivery'],
+                answer: `🚚 **Chính Sách Giao Hàng:**
+
+📍 **Khu Vực Giao Hàng:**
+• Toàn quốc qua bưu điện
+• Đà Nẵng: Giao hàng tận nơi
+
+⏰ **Thời Gian:**
+• Nội thành Đà Nẵng: 1-2 ngày
+• Các tỉnh khác: 3-5 ngày
+• Sản phẩm đặc biệt: 5-7 ngày
+
+💰 **Phí Ship:**
+• Đà Nẵng nội thành: 15.000đ
+• Các tỉnh khác: 25.000đ - 35.000đ
+• Đơn hàng từ 500.000đ: **FREESHIP**
+
+📦 **Đóng Gói:**
+• Hộp carton chắc chắn
+• Bọc bubble bảo vệ
+• Dán tem và thông tin
+
+📞 **Hotline:** 0905.298.298`
+            },
+            {
+                keywords: ['liên hệ', 'contact', 'địa chỉ', 'phone', 'hotline', 'facebook'],
+                answer: `📞 **Thông Tin Liên Hệ:**
+
+**📱 Hotline:** 0905.298.298
+• Tư vấn: 8h00 - 21h00 hàng ngày
+• Đặt hàng: 24/7
+
+**🏪 Địa Chỉ Shop:**
+41 Nguyễn Thi, Hải Châu, Đà Nẵng
+• Mở cửa: 8h00 - 20h00
+
+**💬 Facebook:**
+• Page: facebook.com/rorishop.official
+• Messenger: m.me/rorishop.official
+
+**📧 Email:** 
+contact@rorishop.com
+
+**🌐 Website:**
+rorishop.com
+
+Chúng tôi luôn sẵn sàng hỗ trợ bạn! 😊`
+            },
+            {
+                keywords: ['đổi trả', 'bảo hành', 'lỗi', 'hoàn tiền', 'policy'],
+                answer: `🔄 **Chính Sách Đổi Trả:**
+
+**✅ Điều Kiện Đổi Trả:**
+• Lỗi do shop (sai thiết kế, in lỗi)
+• Hàng bị hỏng trong vận chuyển
+• Không đúng yêu cầu đã thỏa thuận
+
+**⏰ Thời Gian:**
+• Báo lỗi trong 24h kể từ khi nhận
+• Đổi trả trong 3 ngày
+
+**📋 Quy Trình:**
+1. Chụp ảnh sản phẩm lỗi
+2. Liên hệ hotline: 0905.298.298
+3. Gửi hàng về shop
+4. Shop kiểm tra và xử lý
+
+**💡 Lưu Ý:**
+• Không đổi trả do thay đổi ý kiến cá nhân
+• Sản phẩm phải còn nguyên vẹn
+• Shop hỗ trợ làm lại miễn phí nếu lỗi do shop`
+            },
+            {
+                keywords: ['thời gian', 'bao lâu', 'mất bao nhiêu ngày', 'hoàn thành'],
+                answer: `⏰ **Thời Gian Hoàn Thành:**
+
+**🥤 Ly & Cốc:**
+• Thiết kế đơn giản: 1-2 ngày
+• Thiết kế phức tạp: 2-3 ngày
+
+**👕 Áo Thun:**
+• 1-10 áo: 2-3 ngày
+• 10-50 áo: 3-5 ngày
+• Trên 50 áo: 5-7 ngày
+
+**🎁 Box Quà:**
+• Set có sẵn: 1-2 ngày
+• Thiết kế riêng: 3-5 ngày
+
+**🔑 Phụ Kiện:**
+• Móc khóa, sticker: 1-2 ngày
+• Túi tote: 2-3 ngày
+
+**⚡ Dịch Vụ Gấp:**
+• Phụ thu 30-50%
+• Hoàn thành trong 4-8h
+• Áp dụng với đơn hàng nhỏ
+
+📞 **Tư vấn thời gian:** 0905.298.298`
+            }
+        ];
+
+        // File upload functions
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        }
+                // Chatbot functions
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const notificationBadge = document.getElementById('notificationBadge');
+            const chatToggle = document.getElementById('chatToggle');
+            
+            if (chatWindow.classList.contains('show')) {
+                chatWindow.classList.remove('show');
+                chatToggle.classList.remove('active');
+            } else {
+                chatWindow.classList.add('show');
+                chatToggle.classList.add('active');
+                notificationBadge.style.display = 'none';
+                
+                // Focus on input
+                setTimeout(() => {
+                    document.getElementById('messageInput').focus();
+                }, 300);
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Get bot response after delay
+            setTimeout(() => {
+                hideTyping();
+                const response = getBotResponse(message);
+                addMessage('bot', response);
+            }, 1000 + Math.random() * 2000);
+        }
+
+        function addMessage(type, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            
+            const avatar = type === 'user' ? 
+                '<i class="fas fa-user"></i>' : 
+                '<i class="fas fa-robot"></i>';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-bubble">${content}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function showTyping() {
+            if (isTyping) return;
+            isTyping = true;
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            isTyping = false;
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askQuestion(question) {
+            document.getElementById('messageInput').value = question;
+            sendMessage();
+        }
+
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Find best matching FAQ
+            let bestMatch = null;
+            let maxScore = 0;
+            
+            faqData.forEach(faq => {
+                let score = 0;
+                faq.keywords.forEach(keyword => {
+                    if (message.includes(keyword.toLowerCase())) {
+                        score++;
                     }
                 });
+                
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatch = faq;
+                }
             });
+            
+            if (bestMatch && maxScore > 0) {
+                return bestMatch.answer;
+            }
+            
+            // Default responses for unmatched questions
+            const defaultResponses = [
+                `Xin lỗi, tôi chưa hiểu rõ câu hỏi của bạn. 😅
 
-            document.querySelectorAll('.product-img').forEach(img => {
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s';
-                img.onload = () => img.style.opacity = '1';
-                imageObserver.observe(img);
+Bạn có thể hỏi tôi về:
+🛍️ Sản phẩm và dịch vụ
+💰 Giá cả và khuyến mãi
+📦 Cách đặt hàng
+🚚 Giao hàng và thời gian
+💬 Thông tin liên hệ
+
+Hoặc gọi trực tiếp: **0905.298.298** để được tư vấn chi tiết hơn!`,
+
+                `Tôi cần thêm thông tin để trả lời chính xác nhất! 🤔
+
+Một số chủ đề tôi có thể giúp bạn:
+✨ Tư vấn sản phẩm phù hợp
+📊 Báo giá chi tiết
+⏰ Thời gian hoàn thành
+🎨 Quy trình thiết kế
+
+**Liên hệ trực tiếp:**
+📞 **Hotline:** 0905.298.298
+💬 **Messenger:** Rô Ri Shop`,
+
+                `Câu hỏi của bạn khá đặc biệt! 😊
+
+Để được tư vấn chi tiết và chính xác nhất, bạn có thể:
+📞 **Gọi trực tiếp:** 0905.298.298
+💬 **Chat Facebook:** m.me/rorishop.official  
+🏪 **Ghé shop:** 41 Nguyễn Thi, Hải Châu, Đà Nẵng
+
+Team Rô Ri Shop sẽ tư vấn tận tình cho bạn! ❤️`
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        function showNotification(title, message, isError = false) {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${isError ? 'error' : ''}`;
+            notification.innerHTML = `<strong>${title}</strong><br>${message}`;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100px)';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 4000);
+
+            // Remove on click
+            notification.addEventListener('click', () => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                setTimeout(() => notification.remove(), 300);
             });
         }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMessengerButton();
+            
+            // Show chat notification after 3 seconds if chat isn't open
+            setTimeout(() => {
+                const notificationBadge = document.getElementById('notificationBadge');
+                const chatWindow = document.getElementById('chatWindow');
+                if (notificationBadge && !chatWindow.classList.contains('show')) {
+                    notificationBadge.style.display = 'flex';
+                }
+            }, 3000);
+        });
+
+        // Add CSS animation for file removal
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(-100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
